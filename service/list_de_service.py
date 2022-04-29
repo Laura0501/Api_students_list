@@ -31,5 +31,12 @@ class ListDeService:
             self.students.reversed_list_de()
             return {"message": "Se ha invertido la lista"}
 
+    def exchange_start_finally_de(self):
+            if self.students.head == None:
+                return {"message": "La lista esta vacia"}
+            else:
+                self.students.exchange_start_finally_de()
+                return {"message": "Se han intercambiado los extremos de la lista"}
+
 
 

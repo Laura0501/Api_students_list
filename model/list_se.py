@@ -24,6 +24,8 @@ class ListSE:
         if self.head == None:
             self.head = Node(data)
         else:
+            if self.validate_exist(data.identification):
+                raise Exception("Ya existe un estudiante con la identificacion")
             temp = Node(data)
             temp.next = self.head
             self.head = temp

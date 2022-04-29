@@ -63,6 +63,14 @@ class ListDe:
                 temp = temp.next
             self.head = list_copy.head
 
+    def exchange_start_finally_de(self):
+        temp = self.head
+        while temp.next != None:
+            temp = temp.next
+        date_temporal = self.head.data
+        self.head.data = temp.data
+        temp.data = date_temporal
+
 
 
 

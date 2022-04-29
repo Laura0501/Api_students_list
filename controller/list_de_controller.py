@@ -40,3 +40,9 @@ def add_to_start_de():
 def reversed_list_de():
     return Response(status=200, response=json.dumps(list_de_service.reversed_list_de(), cls=util_encoder),
                     mimetype='aplication/json')
+
+@app_list_de.route('/list_de/exchange_start_finally')
+def exchange_start_finally_de():
+    return Response(status=200,
+                    response=json.dumps(list_de_service.exchange_start_finally_de()),
+                    mimetype="application/json")
