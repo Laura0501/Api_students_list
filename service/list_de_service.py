@@ -38,5 +38,15 @@ class ListDeService:
                 self.students.exchange_start_finally_de()
                 return {"message": "Se han intercambiado los extremos de la lista"}
 
+    def remove_data_id(self, id):
+        if self.students.head == None:
+            return {"message": "La lista esta vacia"}
+        else:
+            deleted_student = self.students.remove_data_id_de(id)
+            if deleted_student == True:
+                return {"message": "Se ha eliminado el estudiante de la lista"}
+            else:
+                return {"message": "El estudiante no esta en la lista"}
+
 
 

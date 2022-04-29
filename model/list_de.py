@@ -71,6 +71,24 @@ class ListDe:
         self.head.data = temp.data
         temp.data = date_temporal
 
+#Eliminar por dato
 
+    def remove_data_id_de(self, id: str):
+        temp=self.head
+        if self.head.data.identification==id:
+            self.head=temp.next
+            temp.next.previous=None
+            return True
 
-
+        else:
+            while temp.next != None:
+                if temp.next.data.identification==id:
+                    temp.next=temp.next.next
+                    if temp.next.next.previous!=None:
+                        temp.next.next.previous=temp.next.previous
+                    else:
+                        temp.next.next.previous=None
+                    return True
+                temp=temp.next
+            temp.next=None
+            return False

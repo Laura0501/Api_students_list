@@ -46,3 +46,9 @@ def exchange_start_finally_de():
     return Response(status=200,
                     response=json.dumps(list_de_service.exchange_start_finally_de()),
                     mimetype="application/json")
+
+@app_list_de.route('/list_de/delete_by_data/<id>')
+def remove_data_id(id):
+    return Response(status=200,
+                    response=json.dumps(list_de_service.remove_data_id_de(id)),
+                    mimetype="application/json")
