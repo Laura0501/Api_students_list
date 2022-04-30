@@ -52,3 +52,24 @@ def remove_data_id(id):
     return Response(status=200,
                     response=json.dumps(list_de_service.remove_data_id_de(id)),
                     mimetype="application/json")
+
+@app_list_de.route('/list_de/remove_by_position/<position>')
+def remove_by_position_de(position):
+    return Response(status=200,
+                    response=json.dumps(list_de_service.remove_by_position_de(int(position))),
+                    mimetype="application/json")
+
+
+
+######ADICIONAR
+
+
+@app_list_de.route('/list_de/get_womans_to_start')
+def get_womans_to_start():
+    return Response(status=200, response=json.dumps(list_de_service.get_womans_to_start_de(), cls=util_encoder),
+                    mimetype='aplication/json')
+
+@app_list_de.route('/list_de/get_list_for_genders')
+def get_list_for_genders():
+    return Response(status=200, response=json.dumps(list_de_service.get_list_for_genders_de(), cls=util_encoder),
+                    mimetype='aplication/json')

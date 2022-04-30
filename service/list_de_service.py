@@ -38,15 +38,56 @@ class ListDeService:
                 self.students.exchange_start_finally_de()
                 return {"message": "Se han intercambiado los extremos de la lista"}
 
-    def remove_data_id(self, id):
+    def remove_data_id_de(self, id):
         if self.students.head == None:
             return {"message": "La lista esta vacia"}
         else:
             deleted_student = self.students.remove_data_id_de(id)
-            if deleted_student == True:
-                return {"message": "Se ha eliminado el estudiante de la lista"}
-            else:
+            if deleted_student == False:
                 return {"message": "El estudiante no esta en la lista"}
+            else:
+                return {"message": "Se elimino exitosamente"}
+
+    def remove_by_position_de(self, position):
+        try:
+            if self.students.head == None:
+                return {"message": "La lista esta vacia"}
+            else:
+                self.students.remove_by_position_de(position)
+                return {"message":"Se ha eliminado el estudiante en la posicion indicada"}
+
+        except Exception as error:
+            return {"message":str(error)}
+
+
+    def add_to_position_de(self, position, data):
+        student = Student(data)
+        try:
+            self.students.add_to_position_de(position,student)
+            return {"message": "Se ha agregado el estudiante en la posicion solicitada"}
+
+        except Exception as error:
+            return {"message":str(error)}
+
+    def get_womans_to_start(self):
+        if self.students.head==None:
+            return{"Message":"La lista esta vacia"}
+
+        else:
+            self.students.get_womans_to_start_de()
+            return {"message":"Se ha ordenado la lista, mujeres de primero"}
+
+    def get_list_for_genders(self):
+        try:
+            if self.students.head == None:
+                return {"message": "La lista esta vacia"}
+
+            else:
+                self.students.get_list_for_genders_de()
+                return{"Message":"Se ha ordenado la lista intercalada por generos "}
+
+        except Exception as error:
+            return {"Message":str(error)}
 
 
 

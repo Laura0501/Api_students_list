@@ -31,7 +31,7 @@ class ListDe:
             # posicionandonos en el ultimo
             new_node = NodeDe(date)
             temp.next = new_node
-            new_node.prev = temp
+            new_node.previous = temp
         self.count += 1
 
     def add_to_start_de(self, data):
@@ -75,20 +75,126 @@ class ListDe:
 
     def remove_data_id_de(self, id: str):
         temp=self.head
-        if self.head.data.identification==id:
-            self.head=temp.next
-            temp.next.previous=None
+        if temp.data.identification==id:
+            if temp.next==None:
+                self.head=None
+            else:
+                temp.next.previous=None
+                self.head=temp.next
             return True
 
         else:
             while temp.next != None:
-                if temp.next.data.identification==id:
-                    temp.next=temp.next.next
-                    if temp.next.next.previous!=None:
-                        temp.next.next.previous=temp.next.previous
+                if temp.next.data.identification == id:
+                    temp.next = temp.next.next
+                    if temp.next.next.previous != None:
+                        temp.next.next.previous = temp.next.previous
                     else:
-                        temp.next.next.previous=None
+                        temp.next.next.previous = None
                     return True
-                temp=temp.next
-            temp.next=None
+                    break
+                temp = temp.next
+            temp.next = None
             return False
+
+
+#Eliminar por posicion
+    def remove_by_position_de(self, position: int):
+        if position > 0 and position <= self.count :
+            temp = self.head
+            if position==1:
+                if temp.next == None:
+                    self.head = None
+                else:
+                    temp.next.previous = None
+                    self.head = temp.next
+
+            else:
+                count=1
+                while temp.next != None:
+                    if count == position - 1:
+                        temp.next = temp.next.next
+                        if temp.next.next.previous != None:
+                            temp.next.next.previous = temp.next.previous
+                        else:
+                            temp.next.next.previous = None
+                        return True
+                        break
+                    count += 1
+                    temp = temp.next
+        else:
+            raise Exception("La posición no es válida")
+
+#Adicionar por posicion
+
+    def add_to_position_de(self, position: int, data:Student):
+        if position > 0 and position <= (self.count + 1):
+            if position == 1:
+                new_student = NodeDe(data)
+                new_student.next = self.head
+                self.head = new_student
+                self.count += 1
+            else:
+                temp = self.head
+                count = 1
+                while temp != None:
+                    if count == position - 1:
+                        new_node = NodeDe(data)
+                        new_node.next = temp.next
+                        temp.next = new_node
+                        self.count +=1
+                        break
+                    temp = temp.next
+                    count +=1
+
+        else:
+            raise Exception("La posición no es válida")
+
+#Mujeres primero
+
+    def get_womans_to_start_de(self):
+        temp=self.head
+        list_copy = ListDe()
+        while temp != None:
+            if temp.data.gender == 2:
+                list_copy.add_to_start_de(temp.data)
+
+            if temp.data.gender == 1:
+                list_copy.add_de(temp.data)
+            temp=temp.next
+        self.head = list_copy.head
+
+# Lista intercalada por genero
+    def get_list_for_genders_de(self):
+        if self.count > 1:
+            list_man= ListDe()
+            list_woman= ListDe()
+            temp=self.head
+            while temp != None:
+                if temp.data.gender==2:
+                    list_woman.add_de(temp.data)
+                if temp.data.gender==1:
+                    list_man.add_de(temp.data)
+                temp=temp.next
+####
+            if list_man.count ==0 or list_woman.count ==0:
+                raise Exception("No es posible intercalar, la lista solo contiene estudiantes del mismo género")
+
+            else:
+                pos = 2
+                temp = list_woman.head
+                while temp != None:
+                    if pos > list_man.count:
+                        list_man.add_de(temp.data)
+                    else:
+                        list_man.add_to_position_de(pos,temp.data)
+                    temp = temp.next
+                    pos = pos +2
+                self.head = list_man.head
+
+        else:
+            raise Exception({"message":"No hay datos para intercalar"})
+
+
+
+
