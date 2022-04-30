@@ -89,5 +89,25 @@ class ListDeService:
         except Exception as error:
             return {"Message":str(error)}
 
+    def order_for_ages_genders_de(self):
+        if self.students.head==None:
+            return{"Message":"La lista esta vacia"}
+
+        else:
+            self.students.order_for_ages_genders_de()
+            return {"message":"Se ha ordenado la lista, mujeres de primero de menor a mayor, luego "
+                              "hombres de mayor a menor"}
+
+    def kamikaze(self, position):
+        try:
+            if self.students.head == None:
+                return {"message": "La lista esta vacia"}
+            else:
+                self.students.Kamikaze(position)
+                return {"message":"Se ha eliminado el estudiante en la posicion indicada"}
+
+        except Exception as error:
+            return {"message":str(error)}
+
 
 

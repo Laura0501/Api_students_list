@@ -78,3 +78,8 @@ def get_list_for_genders():
     return Response(status=200, response=json.dumps(list_se_service.get_list_for_genders(), cls=util_encoder),
                     mimetype='aplication/json')
 
+@app_list_se.route('/list_se/order_for_ages_genders')
+def order_for_ages_genders():
+    return Response(status=200, response=json.dumps(list_se_service.order_for_ages_genders(), cls=util_encoder),
+                    mimetype='aplication/json')
+

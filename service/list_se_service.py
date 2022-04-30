@@ -109,3 +109,15 @@ class ListSE_service:
 
         except Exception as error:
             return {"Message":str(error)}
+
+    def order_for_ages_genders(self):
+        if self.students.head==None:
+            return{"Message":"La lista esta vacia"}
+
+        else:
+            self.students.order_for_ages_genders()
+            return {"message":"Se ha ordenado la lista, mujeres de primero de menor a mayor, luego "
+                              "hombres de mayor a menor"}
+
+
+

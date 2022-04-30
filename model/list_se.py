@@ -168,4 +168,59 @@ class ListSE:
         else:
             raise Exception({"message":"No hay datos para intercalar"})
 
+    def order_students_age_less(self, data):
+        if self.head==None:
+            self.add_to_start(data)
+        else:
+            if data.age<self.head.data.age:
+                self.add_to_start(data)
+            else:
+                temp=self.head
+                while temp.next !=None:
+                    if temp.data.age < temp.next.data.age:
+                        break
+                    temp=temp.next
+                new_node=Node(data)
+                new_node.next=temp.next
+                temp.next=new_node
+        self.count+=1
 
+
+    def order_students_age_higher(self, data):
+        if self.head==None:
+            self.add_to_start(data)
+        else:
+            if data.age>self.head.data.age:
+                self.add_to_start(data)
+            else:
+                temp=self.head
+                while temp.next !=None:
+                    if temp.data.age > temp.next.data.age:
+                        break
+                    temp=temp.next
+                new_node=Node(data)
+                new_node.next=temp.next
+                temp.next=new_node
+        self.count+=1
+
+
+    def order_for_ages_genders(self):
+        if self.head !=None:
+            temp=self.head
+            list_woman=ListSE()
+            list_man=ListSE()
+
+            while temp !=None:
+                if temp.data.gender ==1:
+                    list_man.order_students_age_higher(temp.data)
+
+                if temp.data.gender == 2:
+                    list_woman.order_students_age_less(temp.data)
+                temp=temp.next
+
+            temp=list_woman.head
+            while temp.next !=None:
+                temp=temp.next
+
+            temp.next=list_man
+            return list_woman
