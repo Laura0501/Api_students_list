@@ -20,6 +20,7 @@ class List_de_cirle:
         if self.head == None:
             self.head = NodeDe(data)
             self.head.next = self.head
+            self.head.previous=self.head
         else:
             if self.validate_exist_de(data.identification):
                 raise Exception("Ya existe un estudiante con la identificacion")
@@ -31,34 +32,37 @@ class List_de_cirle:
             # posicionandonos en el ultimo
             new_node = NodeDe(data)
             temp.next = new_node
-            temp.next.next=self.head
+            new_node.next=self.head
             new_node.previous = temp
+            self.head.previous=new_node
         self.count += 1
 
     def add_to_start_de_circle(self, data):
         if self.head == None:
             self.head = NodeDe(data)
             self.head.next=self.head
+            self.head.previous = self.head
         else:
             if self.validate_exist_de(data.identification):
                 raise Exception("Ya existe un estudiante con la identificacion")
 
-            temp = self.head
-
-            while temp.next != self.head:
-                temp = temp.next
-            temp.next = NodeDe(data)
-            temp.next.next = self.head
-            self.head = temp.next
-            self.head.next = self.head
+            new_node=NodeDe(data)
+            new_node.next=self.head
+            new_node.previous=self.head.previous
+            new_node.previous.next=new_node
+            self.head.previous=new_node
+            self.head=new_node
         self.count += 1
 
     def validate_exist_de(self, id):
         temp = self.head
-        while temp != self.head:
+        while temp.next != self.head:
             if temp.data.identification == id:
                 return True
             temp = temp.next
+
+        if temp.data.identification == id:
+            return True
         return False
 
     def count_de_circle(self):

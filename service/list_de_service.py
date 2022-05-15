@@ -69,7 +69,7 @@ class ListDeService:
         except Exception as error:
             return {"message":str(error)}
 
-    def get_womans_to_start(self):
+    def get_womans_to_start_de(self):
         if self.students.head==None:
             return{"Message":"La lista esta vacia"}
 
@@ -77,7 +77,7 @@ class ListDeService:
             self.students.get_womans_to_start_de()
             return {"message":"Se ha ordenado la lista, mujeres de primero"}
 
-    def get_list_for_genders(self):
+    def get_list_for_genders_de(self):
         try:
             if self.students.head == None:
                 return {"message": "La lista esta vacia"}

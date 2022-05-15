@@ -1,10 +1,10 @@
 from flask import Response, Blueprint, jsonify, json, request
-from service.list_de_service import ListDe
+from service.list_de_service import ListDeService
 from util.util_encoder import util_encoder
 
 app_list_de=Blueprint("app_list_de", __name__)
 
-list_de_service=ListDe()
+list_de_service=ListDeService()
 
 @app_list_de.route('/list_de/all')
 def get_all_students_de():
@@ -38,7 +38,8 @@ def add_to_start_de():
 
 @app_list_de.route('/list_de/inversed')
 def reversed_list_de():
-    return Response(status=200, response=json.dumps(list_de_service.reversed_list_de(), cls=util_encoder),
+    list_de_service.reversed_list_de()
+    return Response(status=200, response=json.dumps(list_de_service.get_all_students_de(), cls=util_encoder),
                     mimetype='aplication/json')
 
 @app_list_de.route('/list_de/exchange_start_finally')
@@ -83,5 +84,5 @@ def order_for_ages_genders():
 @app_list_de.route('/list_de/kamikaze/<position>')
 def kamikaze(position):
     return Response(status=200,
-                    response=json.dumps(list_de_service.Kamikaze(int(position))),
+                    response=json.dumps(list_de_service.kamikaze(int(position))),
                     mimetype="application/json")

@@ -17,11 +17,11 @@ class ListDe:
             return list
 
     def add_de(self, data):
-        date=Student(data)
+
         if self.head == None:
-            self.head = NodeDe(date)
+            self.head = NodeDe(data)
         else:
-            if self.validate_exist_de(date.identification):
+            if self.validate_exist_de(data.identification):
                 raise Exception("Ya existe un estudiante con la identificacion")
 
             temp = self.head
@@ -29,19 +29,19 @@ class ListDe:
                 temp = temp.next
 
             # posicionandonos en el ultimo
-            new_node = NodeDe(date)
+            new_node = NodeDe(data)
             temp.next = new_node
             new_node.previous = temp
         self.count += 1
 
     def add_to_start_de(self, data):
-        date = Student(data)
+
         if self.head == None:
-            self.head = NodeDe(date)
+            self.head = NodeDe(data)
         else:
-            if self.validate_exist_de(date.identification):
+            if self.validate_exist_de(data.identification):
                 raise Exception("Ya existe un estudiante con la identificacion")
-            temp = NodeDe(date)
+            temp = NodeDe(data)
             temp.next = self.head
             self.head = temp
         self.count += 1
