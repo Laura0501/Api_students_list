@@ -74,13 +74,14 @@ class ListDe:
 #Eliminar por dato
 
     def remove_data_id_de(self, id: str):
-        temp=self.head
+        temp = self.head
         if temp.data.identification==id:
             if temp.next==None:
                 self.head=None
             else:
                 temp.next.previous=None
                 self.head=temp.next
+                temp.next=None
             return True
 
         else:
@@ -149,30 +150,6 @@ class ListDe:
 
         else:
             raise Exception("La posición no es válida")
-
-#Adicionar en posicion
-    def add_to_position_de(self, position, data: Student):
-        date=Student(data)
-        if position > 0 and position <= (self.count + 1):
-            if position == 1:
-                self.add_de(date)
-        else:
-            if self.validate_exist_de(date.identification):
-                raise Exception("Ya existe un estudiante con esa identificacion")
-            node = NodeDe(date)
-            temp = self.head
-            previous= None
-            count = 1
-
-            while count< position:
-                previous = temp
-                temp = temp.next
-                count += 1
-            node.next = temp
-            temp.previous = node
-            previous.next = node
-            node.previous= previous
-        self.count = +1
 
 #Mujeres primero
     def get_womans_to_start_de(self):
