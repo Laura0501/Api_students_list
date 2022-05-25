@@ -2,6 +2,7 @@ from flask import Response, Blueprint, jsonify, json, request
 from service.list_se_service import ListSE_service
 from util.util_encoder import util_encoder
 
+
 app_list_se=Blueprint("app_list_se", __name__)
 
 list_se_service = ListSE_service()

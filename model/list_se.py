@@ -6,6 +6,8 @@ class ListSE:
         self.head= None
         self.count=0
 
+#ADICIONAR ESTUDIANTE
+
     def add(self, data:Student):
         if self.head == None:
             self.head = Node(data)

@@ -2,6 +2,7 @@ from flask import Response, Blueprint, jsonify, json
 from service.student_service import StudentService
 from util.util_encoder import util_encoder
 
+
 #Response dominar el tipo de datos, json convertir objetos a json
 
 app_student=Blueprint("app_student", __name__)
